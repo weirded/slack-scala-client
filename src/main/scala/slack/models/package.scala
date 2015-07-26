@@ -4,6 +4,8 @@ import play.api.data.validation.ValidationError
 import play.api.libs.json._
 
 package object models {
+  implicit val attachmentFieldFmt = Json.format[AttachmentField]
+  implicit val attachmentFmt = Json.format[Attachment]
   implicit val authIdentityFmt = Json.format[AuthIdentity]
   implicit val teamFmt = Json.format[Team]
   implicit val channelValueFmt = Json.format[ChannelValue]
@@ -13,6 +15,7 @@ package object models {
   implicit val groupFmt = Json.format[Group]
   implicit val userProfileFmt = Json.format[UserProfile]
   implicit val userFmt = Json.format[User]
+  implicit val reactionFmt = Json.format[Reaction]
   implicit val slackCommentFmt = Json.format[SlackComment]
   implicit val slackFileFmt = Json.format[SlackFile]
 

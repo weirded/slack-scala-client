@@ -1,10 +1,12 @@
 import sbt._
 import Keys._
+import com.typesafe.sbt.SbtPgp.autoImport._
+import sbtrelease._
 
 object BuildSettings {
-  val buildOrganization = "com.bryangilbert"
+  val buildOrganization = "com.github.gilbertw1"
   val buildVersion      = "0.1.0"
-  val buildScalaVersion = "2.11.6"
+  val buildScalaVersion = "2.11.7"
 
   val buildSettings = Defaults.defaultSettings ++ Seq (
     organization := buildOrganization,
@@ -18,7 +20,7 @@ object Resolvers {
 }
 
 object Dependencies {
-  val akkaVersion = "2.3.9"
+  val akkaVersion = "2.3.12"
   val sprayVersion = "1.3.3"
 
   val akkaActor = "com.typesafe.akka" %% "akka-actor" % akkaVersion
