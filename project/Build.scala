@@ -26,7 +26,7 @@ object Dependencies {
 
   val scalaAsync = "org.scala-lang.modules" %% "scala-async" % "0.9.2"
   val dispatch = "net.databinder.dispatch" %% "dispatch-core" % "0.11.2"
-  val playJson = "com.typesafe.play" %% "play-json" % "2.3.7"
+  val playJson = "com.typesafe.play" %% "play-json" % "2.3.9"
   val sprayWebsocket = "com.wandoulabs.akka" %% "spray-websocket" % "0.1.4"
 
   val scalatest = "org.scalatest" %% "scalatest" % "2.2.1" % "test"
