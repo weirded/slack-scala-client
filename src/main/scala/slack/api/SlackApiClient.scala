@@ -110,8 +110,7 @@ class SlackApiClient(token: String) {
     extract[Channel](res, "channel")
   }
 
-  // TODO: Paging
-  def getChannelHistory(channelId: String, latest: Option[Long] = None, oldest: Option[Long] = None,
+  def getChannelHistory(channelId: String, latest: Option[String] = None, oldest: Option[String] = None,
       inclusive: Option[Int] = None, count: Option[Int] = None)(implicit ec: ExecutionContext): Future[HistoryChunk] = {
     val res = makeApiMethodRequest (
       "channels.history",
@@ -197,6 +196,7 @@ class SlackApiClient(token: String) {
       "chat.postMessage",
       ("channel" -> channelId),
       ("text" -> text),
+      ("username" -> username),
       ("as_user" -> asUser),
       ("parse" -> parse),
       ("link_names" -> linkNames),
@@ -292,7 +292,7 @@ class SlackApiClient(token: String) {
     extract[Group](res, "group")
   }
 
-  def getGroupHistory(channelId: String, latest: Option[Long] = None, oldest: Option[Long] = None,
+  def getGroupHistory(channelId: String, latest: Option[String] = None, oldest: Option[String] = None,
       inclusive: Option[Int] = None, count: Option[Int] = None)(implicit ec: ExecutionContext): Future[HistoryChunk] = {
     val res = makeApiMethodRequest (
       "groups.history",
@@ -369,7 +369,7 @@ class SlackApiClient(token: String) {
     extract[Boolean](res, "ok")
   }
 
-  def getImHistory(channelId: String, latest: Option[Long] = None, oldest: Option[Long] = None,
+  def getImHistory(channelId: String, latest: Option[String] = None, oldest: Option[String] = None,
       inclusive: Option[Int] = None, count: Option[Int] = None)(implicit ec: ExecutionContext): Future[HistoryChunk] = {
     val res = makeApiMethodRequest (
       "im.history",
@@ -528,7 +528,7 @@ class SlackApiClient(token: String) {
   }
 
   def getUserInfo(userId: String)(implicit ec: ExecutionContext): Future[User] = {
-    val res = makeApiMethodRequest("users.getInfo", ("user" -> userId))
+    val res = makeApiMethodRequest("users.info", ("user" -> userId))
     extract[User](res, "user")
   }
 
@@ -561,7 +561,7 @@ class SlackApiClient(token: String) {
 case class ApiError(code: String) extends Exception(code)
 
 case class HistoryChunk (
-  latest: Long,
+  latest: Option[String],
   messages: Seq[JsValue],
   has_more: Boolean
 )
